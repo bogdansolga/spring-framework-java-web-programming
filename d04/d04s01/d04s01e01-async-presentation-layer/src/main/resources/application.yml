@@ -1,0 +1,22 @@
+spring:
+  # indent the returned JSON responses
+  jackson:
+      serialization:
+        INDENT_OUTPUT: true
+
+  # the timeout of the async operations (ex: DeferredResult)
+  mvc:
+    async:
+      request-timeout: 60000
+
+# logging settings
+logging:
+  level:
+    root: info
+    org:
+      apache: warn
+      springframework: warn
+
+  pattern:
+    # special characters need to be escaped / quoted
+    console: '%clr([%date{HH:mm:ss.SSS}]){faint} %clr(%thread) %clr(%2p) %clr(%-30.30logger{36}){cyan} %m%n%wex'

@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=TRUE
+    username: sa
+    password: aVeryComplexPassword
+
+# logging settings
+logging:
+  level:
+    root: debug
+    com.zaxxer.hikari: warn
+    org:
+      apache: warn
+      hibernate: warn
+      jboss: warn
+      springframework: warn
+
+  pattern:
+    console: '%clr([%date{HH:mm:ss.SSS}]){faint} %clr(%2p) %clr(%-40.40logger{36}){cyan} %m%n%wex'

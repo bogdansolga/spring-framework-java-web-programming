@@ -1,0 +1,22 @@
+# the name of the current app
+spring:
+  application:
+    name: spring-boot-properties-usage-demo
+
+  autoconfigure:
+    exclude:
+      # - org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration
+
+# logging settings
+logging:
+  level:
+    root: info
+    org:
+      springframework: warn
+
+  pattern:
+    # special characters need to be escaped / quoted
+    console: '%clr([%date{HH:mm:ss.SSS}]){faint} %clr(%2p) %clr(%-40.40logger{36}){cyan} %m%n%wex'
+
+connection:
+  timeout: 3000

@@ -1,0 +1,17 @@
+# the name of the current app
+spring:
+  application:
+    name: spring-boot-web-static-demo
+
+  resources:
+    static-locations: another-folder
+
+  # logging settings
+logging:
+  level:
+    root: info
+    org:
+      apache: warn
+      springframework: warn
+  pattern:
+    console: '%clr([%date{HH:mm:ss.SSS}]){faint} %clr(%2p) %clr(%-40.40logger{36}){cyan} %m%n%wex'

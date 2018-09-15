@@ -1,0 +1,13 @@
+
+[10:49:39.748] main INFO syncProcessingServiceLayerDemo Starting AsyncProcessingServiceLayerDemo on Bogdans-MacBook-Pro.local with PID 67445 (/Volumes/Media/Development/IdeaProjects/spring-boot-training/d04/d04s01/d04s01e02-async-service-layer/target/classes started by bogdan in /Volumes/Media/Development/IdeaProjects/spring-boot-training)
+[10:49:39.750] main INFO syncProcessingServiceLayerDemo No active profile set, falling back to default profiles: default
+[10:49:40.971] main INFO t.d.s01.service.ProductService voidAsyncCall
+[10:49:40.974] main INFO t.d.s01.service.ProductService getFuture
+[10:49:40.974] main INFO t.d.s01.service.ProductService getListenableFuture
+[10:49:40.975] main INFO t.d.s01.service.ProductService getCompletableFuture
+[10:49:40.977] SimpleAsyncTaskExecutor-4 INFO t.d.s01.service.AsyncComponent getCompletableFuture - running on the thread 'SimpleAsyncTaskExecutor-4'
+[10:49:40.977] SimpleAsyncTaskExecutor-1 INFO t.d.s01.service.AsyncComponent voidAsyncCall - running on the thread 'SimpleAsyncTaskExecutor-1'
+[10:49:40.977] SimpleAsyncTaskExecutor-3 INFO t.d.s01.service.AsyncComponent getListenableFuture - running on the thread 'SimpleAsyncTaskExecutor-3'
+[10:49:40.977] SimpleAsyncTaskExecutor-2 INFO t.d.s01.service.AsyncComponent getFuture - running on the thread 'SimpleAsyncTaskExecutor-2'
+[10:49:40.977] SimpleAsyncTaskExecutor-1 INFO t.d.s01.service.AsyncComponent Displaying a value asynchronously
+[10:49:40.978] main INFO syncProcessingServiceLayerDemo Started AsyncProcessingServiceLayerDemo in 1.514 seconds (JVM running for 2.267)

@@ -1,0 +1,67 @@
+# the name of the current app
+spring:
+  application:
+    name: spring-boot-actuator-demo
+
+  # indent the returned JSON responses
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: aVeryComplexPassword
+
+  jpa:
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+
+# logging settings
+logging:
+  level:
+    root: info
+    org:
+      apache: warn
+      springframework: warn
+      hibernate: warn
+
+  pattern:
+    console: '%clr([%date{HH:mm:ss.SSS}]){faint} %clr(%2p) %clr(%-40.40logger{36}){cyan} %m%n%wex'
+
+# actuator config
+endpoints:
+  sensitive: false
+  actuator:
+    enabled: true
+
+  shutdown:
+    enabled: true
+    sensitive: true
+
+  info:
+    enabled: true
+    path: the-info
+
+  metrics:
+    enabled: true
+
+info:
+  app:
+    java:
+      source: 1.8
+      target: 1.8
+  owner: someone
+  key: value
+
+management:
+  endpoint:
+    health:
+      show-details: always
+
+  health:
+    defaults:
+      enabled: true
