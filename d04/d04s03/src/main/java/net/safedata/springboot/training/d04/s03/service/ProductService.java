@@ -1,7 +1,7 @@
 package net.safedata.springboot.training.d04.s03.service;
 
 import net.safedata.springboot.training.d04.s03.event.ProductRetrievedEvent;
-import net.safedata.springboot.training.d04.s03.model.Product;
+import net.safedata.springboot.training.domain.model.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class ProductService {
         applicationEventPublisher.publishEvent(new ProductRetrievedEvent("iSomething"));
 
         LOGGER.info("The product was read successfully");
-        return new Product(id, "iSomething");
+        return new Product(id, "iSomething", 230d);
     }
 
     @Transactional(

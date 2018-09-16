@@ -1,6 +1,6 @@
 package net.safedata.springboot.training.d04.s03.controller;
 
-import net.safedata.springboot.training.d04.s03.model.Product;
+import net.safedata.springboot.training.domain.model.Product;
 import net.safedata.springboot.training.d04.s03.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

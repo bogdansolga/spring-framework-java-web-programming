@@ -15,9 +15,7 @@ import java.util.Objects;
  * @author bogdan.solga
  */
 @Entity
-@Table(
-        name = "Product"
-)
+@Table(name = "Product")
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1L;

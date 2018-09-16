@@ -2,7 +2,7 @@ package net.safedata.springboot.training.d04.s04.service;
 
 import net.safedata.springboot.training.d04.s04.dto.ProductDTO;
 import net.safedata.springboot.training.d04.s04.exceptions.NotFoundException;
-import net.safedata.springboot.training.d04.s04.model.Product;
+import net.safedata.springboot.training.domain.model.Product;
 import net.safedata.springboot.training.d04.s04.repository.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

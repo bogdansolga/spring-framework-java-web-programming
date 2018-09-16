@@ -20,6 +20,11 @@
         </dependency>
 
         <dependency>
+            <groupId>net.safedata</groupId>
+            <artifactId>domain-model</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>

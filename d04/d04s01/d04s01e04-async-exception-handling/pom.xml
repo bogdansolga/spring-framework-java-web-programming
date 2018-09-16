@@ -11,4 +11,11 @@
     </parent>
 
     <artifactId>d04s01e04-async-exception-handling</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.safedata</groupId>
+            <artifactId>domain-model</artifactId>
+        </dependency>
+    </dependencies>
 </project>

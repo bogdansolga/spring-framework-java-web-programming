@@ -1,6 +1,6 @@
 package net.safedata.springboot.training.d02.s03.repository;
 
-import net.safedata.springboot.training.d02.s03.model.Product;
+import net.safedata.springboot.training.domain.model.Product;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -34,9 +34,9 @@ public class ProductRepository {
     }
 
     public void update(final int id, final Product product) {
-        final Product currentProduct = products.get(id < products.size() ? id : 0);
+        final int index = id < products.size() ? id : 0;
         synchronized (MUTEX) {
-            currentProduct.setName(product.getName());
+            products.set(index, product);
         }
     }
 
@@ -45,10 +45,6 @@ public class ProductRepository {
     }
 
     private Product getDefaultProduct() {
-        final Product product = new Product();
-        product.setId(24);
-        product.setName("A fancy iSomething");
-
-        return product;
+        return new Product(24, "A fancy iSomething", 230d);
     }
 }

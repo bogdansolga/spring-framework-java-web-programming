@@ -7,13 +7,12 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.access.prepost.PreFilter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.safedata.springboot.training.d03.s01.model.Product;
+import net.safedata.springboot.training.domain.model.Product;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,7 +47,7 @@ public class ProductController {
     public Product getProduct(@PathVariable final int id, final @AuthenticationPrincipal UserDetails userDetails) {
         final String username = userDetails.getUsername();
         System.out.println("The current user is '" + username + "'");
-        return new Product(20, "Tablet");
+        return new Product(20, "Tablet", 230d);
     }
 
     // dynamically retrieving the authenticated user details

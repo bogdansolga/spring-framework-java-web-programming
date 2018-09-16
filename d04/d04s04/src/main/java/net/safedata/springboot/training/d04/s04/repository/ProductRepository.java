@@ -1,6 +1,6 @@
 package net.safedata.springboot.training.d04.s04.repository;
 
-import net.safedata.springboot.training.d04.s04.model.Product;
+import net.safedata.springboot.training.domain.model.Product;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -37,8 +37,8 @@ public class ProductRepository {
     }
 
     public void update(final int id, final Product product) {
-        final Product currentProduct = products.get(id < products.size() ? id : 0);
-        currentProduct.setName(product.getName());
+        final int index = id < products.size() ? id : 0;
+        products.set(index, product);
     }
 
     public void delete(final int id) {
@@ -46,10 +46,7 @@ public class ProductRepository {
     }
 
     private Product buildRandomProduct() {
-        final Product product = new Product();
-        product.setId(RANDOM.nextInt(100));
-        product.setName("The product with the ID " + product.getId());
-
-        return product;
+        final int id = RANDOM.nextInt(100);
+        return new Product(id, "The product with the ID " + id, RANDOM.nextDouble());
     }
 }

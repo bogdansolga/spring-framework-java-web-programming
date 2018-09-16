@@ -18,7 +18,7 @@
         <module>d04s02</module>
         <module>d04s03</module>
         <module>d04s04</module>
-        <module>d04s05</module>
+        <module>d04s05-caching</module>
 
         <module>d04s06-complete-project</module>
     </modules>

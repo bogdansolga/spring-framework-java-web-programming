@@ -1,6 +1,6 @@
 package net.safedata.springboot.training.d04.s01.controller;
 
-import net.safedata.springboot.training.d04.s01.model.Product;
+import net.safedata.springboot.training.domain.model.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -27,7 +27,7 @@ public class ProductController {
     )
     public Product getProduct(@PathVariable final int id) {
         longRunningOperation();
-        return new Product(id, "Tablet");
+        return new Product(id, "Tablet", 234d);
     }
 
     @RequestMapping(
@@ -44,7 +44,7 @@ public class ProductController {
                 .supplyAsync(() -> {
                     LOGGER.info("Performing the long running operation...");
                     longRunningOperation();
-                    return new Product(id, "Tablet");
+                    return new Product(id, "Tablet", 250d);
                 })
                 .whenCompleteAsync((response, error) -> {
                     LOGGER.info("Setting the deferred result");
