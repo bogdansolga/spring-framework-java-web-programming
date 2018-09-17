@@ -3,7 +3,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="helloSpring" class="net.safedata.springboot.training.d01.s01.beans.HelloSpring"/>
+    <bean id="helloSpring" class="net.safedata.spring.training.d01.s01.beans.HelloSpring"/>
 
     <bean id="helloSpringAsString" class="java.lang.String">
         <constructor-arg value="Hello Spring [as a String]"/>
