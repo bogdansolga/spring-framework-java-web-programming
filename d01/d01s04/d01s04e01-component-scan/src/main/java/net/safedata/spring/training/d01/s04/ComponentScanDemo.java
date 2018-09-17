@@ -14,7 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ComponentScanDemo {
 
-    private static final boolean USE_ANNOTATIONS_CONFIG = false;
+    private static final boolean USE_ANNOTATIONS_CONFIG = true;
 
     public static void main(String[] args) {
         // 1 - wiring the beans
