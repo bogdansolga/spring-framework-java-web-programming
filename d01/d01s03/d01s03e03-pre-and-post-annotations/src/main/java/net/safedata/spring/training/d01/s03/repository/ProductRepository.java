@@ -9,10 +9,6 @@ import javax.annotation.PostConstruct;
  */
 public class ProductRepository {
 
-    public ProductRepository() {
-        System.out.println("The constructor from ProductRepository");
-    }
-
     @PostConstruct
     public void init() {
         System.out.println("Initializing the repository, using the PostConstruct annotation...");

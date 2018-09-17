@@ -14,7 +14,6 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public ProductService(final ProductRepository productRepository) {
-        System.out.println("The constructor from ProductService");
         this.productRepository = productRepository;
     }
 
