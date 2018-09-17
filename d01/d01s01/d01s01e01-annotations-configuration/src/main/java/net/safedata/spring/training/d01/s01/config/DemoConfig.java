@@ -22,7 +22,7 @@ public class DemoConfig {
     /**
      * This bean is commented by default, so that we won't have two beans of the same type in the Spring IoC container
      */
-    @Bean
+    //@Bean
     public HelloSpring otherHelloSpring() {
         return new HelloSpring();
     }
