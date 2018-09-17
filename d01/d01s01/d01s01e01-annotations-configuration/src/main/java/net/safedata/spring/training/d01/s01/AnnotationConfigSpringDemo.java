@@ -11,6 +11,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  *
  * @author bogdan.solga
  */
+@SuppressWarnings("unused")
 public class AnnotationConfigSpringDemo {
 
     public static void main(String[] args) {
@@ -19,9 +20,6 @@ public class AnnotationConfigSpringDemo {
         //retrievingBeansByType(applicationContext);
 
         //retrievingBeansByTypeAndID(applicationContext);
-
-        Boolean theBoolean = applicationContext.getBean(Boolean.class);
-        System.out.println("The value is " + theBoolean);
     }
 
     private static void retrievingBeansByType(final ApplicationContext applicationContext) {
@@ -32,6 +30,9 @@ public class AnnotationConfigSpringDemo {
         // 'give me the bean (object) of type String from the application context'
         //final String stringBean = applicationContext.getBean(String.class);
         //System.out.println(stringBean);
+
+        Boolean theBoolean = applicationContext.getBean(Boolean.class);
+        System.out.println("The value is " + theBoolean);
     }
 
     private static void retrievingBeansByTypeAndID(final ApplicationContext applicationContext) {
