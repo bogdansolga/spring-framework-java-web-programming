@@ -31,8 +31,8 @@ public class AnnotationConfigSpringDemo {
         //final String stringBean = applicationContext.getBean(String.class);
         //System.out.println(stringBean);
 
-        Boolean theBoolean = applicationContext.getBean(Boolean.class);
-        System.out.println("The value is " + theBoolean);
+        //Boolean theBoolean = applicationContext.getBean(Boolean.class);
+        //System.out.println("The value is " + theBoolean);
     }
 
     private static void retrievingBeansByTypeAndID(final ApplicationContext applicationContext) {
