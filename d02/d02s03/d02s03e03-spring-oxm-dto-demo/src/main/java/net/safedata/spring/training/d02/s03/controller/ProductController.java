@@ -36,12 +36,7 @@ public class ProductController {
 
     @RequestMapping(
             method = RequestMethod.POST,
-            path = "",
-            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-            produces = {
-                    MediaType.APPLICATION_JSON_UTF8_VALUE,
-                    MediaType.APPLICATION_OCTET_STREAM_VALUE
-            }
+            path = ""
     )
     public ResponseEntity<?> create(@RequestBody @Valid ProductDTO productDTO) {
         productService.create(productDTO);
@@ -55,30 +50,6 @@ public class ProductController {
     )
     public ProductDTO getProduct(@PathVariable final int id) {
         return productService.get(id);  // --> HttpStatus.OK
-    }
-
-    @RequestMapping(
-            method = RequestMethod.GET,
-            path = "/{id}",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE
-    )
-    @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)   // static
-    public ResponseEntity<ProductDTO> getProductEntity(@PathVariable final int id) {
-        return new ResponseEntity<>(productService.get(id), HttpStatus.I_AM_A_TEAPOT);  // dynamic
-    }
-
-    @RequestMapping(
-            method = RequestMethod.GET
-    )
-    public String redirectResponse() {
-        return "redirect:product/none";
-    }
-
-    @RequestMapping(
-            method = RequestMethod.GET
-    )
-    public String forward() {
-        return "forward:product/forwarded";
     }
 
     @RequestMapping(

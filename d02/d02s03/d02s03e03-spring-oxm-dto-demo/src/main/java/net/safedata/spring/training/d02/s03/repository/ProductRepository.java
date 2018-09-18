@@ -20,7 +20,7 @@ public class ProductRepository {
 
     @SuppressWarnings("unused")
     public Product get(int id) {
-        return getDefaultProduct();
+        return id <= 0 ? products.get(id) : null;
     }
 
     public List<Product> getAll() {
