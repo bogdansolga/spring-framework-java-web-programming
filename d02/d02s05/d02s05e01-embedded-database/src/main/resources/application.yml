@@ -19,9 +19,7 @@ spring:
 
     username: sa
     password: aVeryComplexPassword
-    data: data-h2.sql
-    schema: schema-h2.sql
-    initialize: false
+    initialization-mode: never
 
   jpa:
     properties:
@@ -33,12 +31,14 @@ spring:
 logging:
   level:
     root: info
+    com:
+      zaxxer: warn
     org:
       apache: warn
       # to see the query parameters - change 'sql' to 'debug' and 'type' to 'trace'
-      hibernate:
-        sql: warn
-        type: warn
+      hibernate: warn
+        # sql: warn
+        # type: warn
       springframework: warn
 
   pattern:

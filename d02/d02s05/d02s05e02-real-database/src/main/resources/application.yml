@@ -11,7 +11,7 @@ spring:
     platform: postgresql
     username: postgres
     url: jdbc:postgresql://localhost:5432/spring_boot
-    initialize: false
+    initialization-mode: never
 
   # JPA properties - JpaProperties
   jpa:
@@ -32,12 +32,14 @@ spring:
 logging:
   level:
     root: info
+    com:
+      zaxxer: warn
     org:
       apache: warn
       # to see the query parameters - change 'sql' to 'debug' and 'type' to 'trace'
-      hibernate:
-        sql: warn
-        type: warn
+      hibernate: warn
+        # sql: warn
+        # type: warn
       springframework: warn
 
   pattern:
