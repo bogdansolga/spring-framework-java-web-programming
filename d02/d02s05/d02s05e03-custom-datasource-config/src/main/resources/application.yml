@@ -16,8 +16,8 @@ spring:
     platform: postgresql
     username: postgres
     url: jdbc:postgresql://localhost:5432/spring_boot
-    initialize: false
     type: com.zaxxer.hikari.HikariDataSource
+    initialization-mode: never
 
     # the properties for the Hikari connection pool
     hikari:
