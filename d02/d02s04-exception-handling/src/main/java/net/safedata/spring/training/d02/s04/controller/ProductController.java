@@ -60,7 +60,7 @@ public class ProductController {
             path = "/{id}"
     )
     public ResponseEntity<ProductDTO> getProduct(@PathVariable final int id) {
-        return new ResponseEntity<>(productService.get(id), HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<>(productService.get(id), HttpStatus.OK);
     }
 
     /**
