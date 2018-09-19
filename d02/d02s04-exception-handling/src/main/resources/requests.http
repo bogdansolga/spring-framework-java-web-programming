@@ -1,0 +1,14 @@
+### getting an existing product
+GET localhost:8080/product/0
+
+### getting an inexisting product
+GET localhost:8080/product/3
+
+### creating a product
+POST localhost:8080/product
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "Another one"
+}
