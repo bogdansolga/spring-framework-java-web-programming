@@ -40,14 +40,15 @@ import java.util.Map;
 @SuppressWarnings("unused")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private static final String[] IGNORED_ENDPOINTS = {"/health", "/about"};
+    private static final String[] IGNORED_ENDPOINTS = {"/info", "/about"};
 
     @Autowired
     public void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
             .passwordEncoder(passwordEncoder())
             .withUser("user")
-            .password("password")
+            // the unencrypted password is 'password'
+            .password("$2a$10$4xnpk2a5jLr1mf6VWle6Vuv4q7DBsW2rqQcg6N1Ms/y4g98Ry4D4C")
             .roles(Roles.ADMIN_ROLE);
     }
 
@@ -149,6 +150,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // obtaining the security context
         SecurityContext existingContext = SecurityContextHolder.getContext();
         final Authentication authentication = existingContext.getAuthentication();
-        authentication.getDetails();
+        final Object details = authentication.getDetails();
+        System.out.println(details);
     }
 }
