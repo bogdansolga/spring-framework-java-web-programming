@@ -29,7 +29,8 @@ public class ProductController {
     @PreAuthorize(
             "hasRole('" + ADMIN_ROLE + "') " +
             "AND authentication.details.userAccount == 25 " + // an equality check
-            "AND hasAuthority('WRITE')"
+            "AND hasAuthority('ROLE_USER') " +
+            "AND hasPermission('STOCKS', 'READ')"
     )
     public void addProduct(final Authentication authentication) {
         // further use the Authentication object, if needed
