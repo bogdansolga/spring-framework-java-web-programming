@@ -33,21 +33,6 @@ logging:
     console: '%clr([%date{HH:mm:ss.SSS}]){faint} %clr(%2p) %clr(%-40.40logger{36}){cyan} %m%n%wex'
 
 # actuator config
-endpoints:
-  sensitive: false
-  actuator:
-    enabled: true
-
-  shutdown:
-    enabled: true
-    sensitive: true
-
-  info:
-    enabled: true
-    path: the-info
-
-  metrics:
-    enabled: true
 
 info:
   app:
@@ -61,7 +46,31 @@ management:
   endpoint:
     health:
       show-details: always
+      enabled: true
+
+    shutdown:
+      enabled: true
+
+    beans:
+      enabled: true
+
+    info:
+      enabled: true
+
+    env:
+      enabled: true
+
+    metrics:
+      enabled: true
+
+    mappings:
+      enabled: true
 
   health:
     defaults:
       enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include: "*"
