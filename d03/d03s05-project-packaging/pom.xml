@@ -19,6 +19,50 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>prod</id>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+
+                        <configuration>
+                            <profiles>
+                                <!-- in case the Spring profile name is different -->
+                                <profile>production</profile>
+                            </profiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+
+                        <configuration>
+                            <profiles>
+                                <profile>dev</profile>
+                            </profiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <finalName>spring-boot-training-${project.version}</finalName>
 
@@ -29,7 +73,7 @@
 
                 <configuration>
                     <executable>true</executable>
-                    <mainClass>net.safedata.springboot.training.d03.s05.ProjectPackagingDemo</mainClass>
+                    <mainClass>net.safedata.spring.training.d03.s05.ProjectPackagingDemo</mainClass>
 
                     <jvmArguments>-server -Xms128m -Xmx128m</jvmArguments>
 
