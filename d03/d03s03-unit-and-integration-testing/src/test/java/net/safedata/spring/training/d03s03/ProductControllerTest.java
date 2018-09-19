@@ -49,7 +49,9 @@ public class ProductControllerTest extends AbstractTransactionalTestNGSpringCont
     }
 
     @Test
-    public void shouldGetAProductById() {
+    public void givenTheContentTypeIsCorrect_WhenGettingAProduct_ThenAllGood() {
+        given()
+                .accept(ContentType.JSON).
         when()
                 .get("/product/{id}", 1).
         then()
@@ -71,7 +73,9 @@ public class ProductControllerTest extends AbstractTransactionalTestNGSpringCont
 
     // a sample of using a dataProvider
     @Test(dataProvider = "dataProvider")
-    public void shouldGetAllProducts(final String productId, final int statusCode) {
+    public void givenTheContentTypeIsCorrect_WhenUsingADataProvider_ThenAllGood(final String productId, final int statusCode) {
+        given()
+                .accept(ContentType.JSON).
         when()
                 .get("/product/{id}", productId).
         then()
