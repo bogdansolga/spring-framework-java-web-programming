@@ -39,7 +39,7 @@ public class AsyncComponent {
     }
 
     @Async
-    CompletableFuture<String> asyncMethodReturningACompletableFuture() {
+    public CompletableFuture<String> asyncMethodReturningACompletableFuture() {
         displayCurrentThreadName("asyncMethodReturningACompletableFuture");
         return CompletableFuture.supplyAsync(() -> "Returned by the CompletableFuture");
     }
