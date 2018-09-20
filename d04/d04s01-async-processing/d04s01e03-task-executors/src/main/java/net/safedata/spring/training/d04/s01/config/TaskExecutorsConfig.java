@@ -23,8 +23,8 @@ public class TaskExecutorsConfig {
         threadPoolTaskExecutor.setMaxPoolSize(PROCESSORS_COUNT * 2);
         threadPoolTaskExecutor.setKeepAliveSeconds(60);
         threadPoolTaskExecutor.setQueueCapacity(1000);
-        threadPoolTaskExecutor.setThreadGroupName("executor-thread-pool-");
-        threadPoolTaskExecutor.setThreadNamePrefix("exec-thread-");
+        threadPoolTaskExecutor.setThreadGroupName("long-lived-executor-thread-pool-");
+        threadPoolTaskExecutor.setThreadNamePrefix("long-lived-exec-thread-");
         threadPoolTaskExecutor.setWaitForTasksToCompleteOnShutdown(true);
         threadPoolTaskExecutor.setAwaitTerminationSeconds(20);
         threadPoolTaskExecutor.setAllowCoreThreadTimeOut(true);
