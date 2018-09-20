@@ -42,9 +42,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-            //.passwordEncoder(passwordEncoder())
+            .passwordEncoder(passwordEncoder())
             .withUser("user")
-            .password("password")
+            // the unencrypted password is 'password'
+            .password("$2a$10$4xnpk2a5jLr1mf6VWle6Vuv4q7DBsW2rqQcg6N1Ms/y4g98Ry4D4C")
             .roles("USER");
     }
 
@@ -53,8 +54,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
             .antMatchers("/resources/static/**", "/about").permitAll()
             .antMatchers(HttpMethod.POST, "/admin").hasAnyRole("ADMIN")
-            .antMatchers(HttpMethod.GET, "/product").fullyAuthenticated()
-            .antMatchers(HttpMethod.POST, "/product").hasAuthority("WRITE")
+            .antMatchers(HttpMethod.GET, "/product/**").permitAll()
+            .antMatchers(HttpMethod.POST, "/product/**").permitAll()
             .anyRequest().authenticated();
 
         // registering the post auth handlers

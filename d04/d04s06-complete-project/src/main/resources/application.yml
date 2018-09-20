@@ -10,36 +10,33 @@ spring:
 
   datasource:
     platform: h2
-
-    # in-memory database
     url: jdbc:h2:mem:complete-web-project
-
-    # on disk database
-    #url: jdbc:h2:~/complete-web-project
-
     username: sa
     password: aVeryComplexPassword
-
-    # data: data-h2.sql
-    # schema: schema-h2.sql
-    initialize: false
+    initialization-mode: never
 
   jpa:
+    hibernate:
+      ddl-auto: create-drop
     properties:
       hibernate:
         show_sql: false
         format_sql: true
 
+    open-in-view: false
+
 # logging settings
 logging:
   level:
     root: info
+    com:
+      zaxxer: warn
     org:
       apache: warn
       # to see the query parameters - change 'sql' to 'debug' and 'type' to 'trace'
-      hibernate:
-        sql: warn
-        type: warn
+      hibernate: warn
+        # sql: warn
+        # type: warn
       springframework: warn
 
   pattern:

@@ -2,10 +2,9 @@ package net.safedata.spring.training.complete.project;
 
 import io.restassured.RestAssured;
 import io.restassured.filter.log.LogDetail;
-import net.safedata.spring.training.complete.project.CompleteProductsProject;
-import net.safedata.spring.training.complete.project.Profiles;
+import io.restassured.http.ContentType;
 import net.safedata.spring.training.complete.project.model.Product;
-import net.safedata.spring.training.complete.project.ProductService;
+import net.safedata.spring.training.complete.project.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -17,7 +16,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.when;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.Is.is;
 
 @SpringBootTest(
@@ -27,7 +26,7 @@ import static org.hamcrest.core.Is.is;
 @ActiveProfiles(Profiles.IN_MEMORY)
 public class ProductControllerTest extends AbstractTransactionalTestNGSpringContextTests {
 
-    private static final String PRODUCT_NAME = "Tablet";
+    private static final String PRODUCT_NAME = "The product with the ID 1";
 
     @LocalServerPort
     private int port;
@@ -42,14 +41,14 @@ public class ProductControllerTest extends AbstractTransactionalTestNGSpringCont
     }
 
     @BeforeClass
-    public void initializeProduct() {
-        final Product product = new Product();
-        product.setName(PRODUCT_NAME);
-        productService.save(product);
+    public void initializeProducts() {
+        productService.init();
     }
 
     @Test
-    public void shouldGetAProductById() {
+    public void givenTheContentTypeIsCorrect_WhenGettingAProduct_ThenAllGood() {
+        given()
+                .accept(ContentType.JSON).
         when()
                 .get("/product/{id}", 1).
         then()
@@ -58,21 +57,26 @@ public class ProductControllerTest extends AbstractTransactionalTestNGSpringCont
     }
 
     @Test
-    public void shouldGetAllProducts() {
+    public void givenTheContentTypeIsCorrect_WhenGettingAllProducts_ThenAllGood() {
+        given()
+                .accept(ContentType.JSON).
         when()
                 .get("/product").
         then()
                 .statusCode(HttpStatus.OK.value())
-                .body("$.size", is(3))
+                .body("$.size", is(10))
                 .body("[0].name", is(PRODUCT_NAME));
     }
 
     // a sample of using a dataProvider
     @Test(dataProvider = "dataProvider")
-    public void shouldGetAllProducts(final String productId, final int statusCode) {
-        when().get("/product/{id}", productId)
-              .then()
-              .statusCode(statusCode);
+    public void givenTheContentTypeIsCorrect_WhenUsingADataProvider_ThenAllGood(final String productId, final int statusCode) {
+        given()
+                .accept(ContentType.JSON).
+        when()
+                .get("/product/{id}", productId).
+        then()
+                .statusCode(statusCode);
     }
 
     @DataProvider(name = "dataProvider", parallel = true)

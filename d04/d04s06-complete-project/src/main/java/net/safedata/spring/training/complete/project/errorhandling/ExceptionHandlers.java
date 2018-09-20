@@ -32,10 +32,7 @@ public class ExceptionHandlers {
         return new MessageDTO(e.getMessage());
     }
 
-    @ExceptionHandler({
-            AccessDeniedException.class,
-            IllegalArgumentException.class
-    })
+    @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(value = HttpStatus.UNAUTHORIZED)
     public MessageDTO unauthorized() {
         return new MessageDTO("Unauthorized access");

@@ -1,32 +1,18 @@
 package net.safedata.spring.training.complete.project.controller;
 
-import net.safedata.spring.training.complete.project.dto.ProductDTO;
 import net.safedata.spring.training.complete.project.model.Product;
-import net.safedata.spring.training.complete.project.security.auth.HasManagerRole;
-import net.safedata.spring.training.complete.project.ProductService;
+import net.safedata.spring.training.complete.project.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-import java.security.Principal;
-import java.util.List;
-
-import static net.safedata.spring.training.complete.project.security.auth.Roles.ADMIN_ROLE;
 
 /**
  * A Spring {@link RestController} used to showcase the modeling of a REST controller for CRUD operations
@@ -37,7 +23,6 @@ import static net.safedata.spring.training.complete.project.security.auth.Roles.
 @RequestMapping(
         path = "/product"
 )
-// TODO integrate Swagger REST API generation
 public class ProductController {
 
     private final ProductService productService;
@@ -47,86 +32,65 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping(
-            method = RequestMethod.POST,
-            path = "",
-            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE
-    )
-    public ResponseEntity<?> create(@RequestBody @Valid ProductDTO productDTO) {
-        productService.create(productDTO);
+    /**
+     * Creates the referenced {@link Product}
+     *
+     * @param product the {@link Product} to be created
+     *
+     * @return a {@link ResponseEntity} with the appropriate {@link HttpStatus}
+     */
+    @PostMapping("")
+    public ResponseEntity create(@RequestBody Product product) {
+        productService.create(product);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @RequestMapping(
-            method = RequestMethod.GET,
-            path = "/{id}",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE
-    )
-    public ProductDTO getProduct(@PathVariable final int id) {
+    /**
+     * Reads the {@link Product} with the specified id
+     *
+     * @param id the id of the requested {@link Product}
+     *
+     * @return the serialized {@link Product}
+     */
+    @GetMapping("/{id}")
+    public Product getProduct(@PathVariable final int id) {
         return productService.get(id);
     }
 
-    @RequestMapping(
-            method = RequestMethod.GET,
-            path = ""
-    )
-    public List<ProductDTO> getAll() {
+    /**
+     * Reads all the existing {@link Product}s
+     *
+     * @return the serialized {@link Product}s
+     */
+    @GetMapping("")
+    public Iterable<Product> getAll() {
         return productService.getAll();
     }
 
-    @RequestMapping(
-            method = RequestMethod.PUT,
-            path = "/{id}"
-    )
-    public ResponseEntity<?> update(@PathVariable final int id, @RequestBody ProductDTO productDTO) {
-        productService.update(id, productDTO);
+    /**
+     * Updates the {@link Product} with the specified ID with the details from the referenced {@link Product}
+     *
+     * @param id the ID of the updated {@link Product}
+     * @param product the new {@link Product} details
+     *
+     * @return a {@link ResponseEntity} with the appropriate {@link HttpStatus}
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable final int id, @RequestBody Product product) {
+        productService.update(id, product);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @RequestMapping(
-            method = RequestMethod.DELETE,
-            path = "/{id}"
-    )
-    public ResponseEntity<?> delete(@PathVariable final int id) {
+    /**
+     * Deletes the {@link Product} with the specified ID
+     *
+     * @param id the ID of the deleted {@link Product}
+     *
+     * @return a {@link ResponseEntity} with the appropriate {@link HttpStatus}
+     */
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity delete(@PathVariable final int id) {
         productService.delete(id);
         return ResponseEntity.ok(HttpStatus.OK);
-    }
-
-    // -------------------------------------------------------------------------
-    @PreAuthorize("hasRole('" + ADMIN_ROLE + "') AND hasAuthority('WRITE')")
-    public void addProduct(final Authentication authentication) {
-        // further use the Authentication object, if needed
-    }
-
-    @GetMapping(
-            path = "/product/{id}"
-    )
-    public Product getProduct(@PathVariable final int id, final @AuthenticationPrincipal UserDetails userDetails) {
-        final String username = userDetails.getUsername();
-        System.out.println("The current user is '" + username + "'");
-        return new Product(20, "Tablet");
-    }
-
-    // dynamically retrieving the authenticated user details
-    public void passAuthenticatedUser(final @AuthenticationPrincipal UserDetails userDetails) {
-        /* the same details can be obtained using:
-        final SecurityContext securityContext = SecurityContextHolder.getContext();
-        final UserDetails details = (UserDetails) securityContext.getAuthentication().getPrincipal();
-        */
-
-        final String username = userDetails.getUsername();
-        // the user details can be further passed to the services
-    }
-
-    @Secured("ROLE_ADMIN")
-    public void processRequestOrResponseParameters(final HttpServletRequest request, final HttpServletResponse response) {
-        // get parameters from the HTTP request, set details in the response
-    }
-
-    // recommended to be used when the principal details need to be consumed by an external tool / API
-    @GetMapping("/currentUser")
-    @HasManagerRole // DRY
-    public Principal principal(final Principal principal) {
-        return principal;
     }
 }
